@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italy Trip — May 2026</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --green:#009246;--red:#CE2B37;--white:#fff;
+    --bg:#f7f5f2;--card:#fff;--text:#1a1a1a;--muted:#6b6b6b;
+    --radius:12px;--shadow:0 2px 12px rgba(0,0,0,.08);
+  }
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+  /* ── Flag stripe top bar ── */
+  .flag-bar{height:6px;background:linear-gradient(90deg,var(--green) 33.3%,var(--white) 33.3%,var(--white) 66.6%,var(--red) 66.6%)}
+
+  /* ── Header ── */
+  .hero{text-align:center;padding:3rem 1.5rem 2rem;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green) 33.3%,#fff 33.3%,#fff 66.6%,var(--red) 66.6%)}
+  .hero h1{font-size:2.4rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.3rem}
+  .hero .subtitle{font-size:1.1rem;opacity:.85;font-weight:400}
+  .hero .dates-badge{display:inline-block;margin-top:1rem;padding:.5rem 1.5rem;border:2px solid rgba(255,255,255,.3);border-radius:50px;font-size:.95rem;letter-spacing:.03em}
+
+  /* ── Container ── */
+  .container{max-width:800px;margin:0 auto;padding:1.5rem}
+
+  /* ── Section titles ── */
+  .section-title{font-size:1.3rem;font-weight:700;margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:3px solid var(--green);display:inline-block}
+  .section-title.red{border-color:var(--red)}
+
+  /* ── Timeline ── */
+  .timeline{position:relative;padding-left:2.5rem}
+  .timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--green),var(--red));border-radius:2px}
+
+  /* ── Day card ── */
+  .day-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1.25rem;overflow:hidden;transition:box-shadow .2s}
+  .day-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.12)}
+  .day-card-dot{position:absolute;left:-2.5rem;top:1.35rem;width:14px;height:14px;border-radius:50%;border:3px solid var(--green);background:var(--bg);z-index:1}
+  .day-card.red .day-card-dot{border-color:var(--red)}
+
+  .day-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;position:relative}
+  .day-header:hover{background:rgba(0,0,0,.02)}
+  .day-city{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .6rem;border-radius:4px;color:#fff}
+  .city-rome{background:var(--red)}
+  .city-florence{background:var(--green)}
+  .city-bologna{background:#e8a317}
+  .city-travel{background:var(--muted)}
+  .day-date{font-weight:600;font-size:1.05rem;margin-left:.75rem;flex:1}
+  .day-summary{color:var(--muted);font-size:.85rem;margin-left:1rem;text-align:right;max-width:40%}
+  .chevron{width:20px;height:20px;margin-left:.75rem;transition:transform .25s;flex-shrink:0}
+  .chevron svg{display:block}
+  .day-card.open .chevron{transform:rotate(180deg)}
+
+  .day-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .day-card.open .day-body{max-height:600px}
+  .day-content{padding:0 1.25rem 1.25rem;border-top:1px solid #eee}
+  .day-content p{margin:.5rem 0;font-size:.92rem}
+  .day-content .label{font-weight:600;color:var(--green)}
+  .day-content .label-red{font-weight:600;color:var(--red)}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:.25rem .75rem;font-size:.88rem;margin:.5rem 0}
+  .detail-grid dt{color:var(--muted);font-weight:500}
+  .detail-grid dd{font-weight:500}
+  .placeholder{display:inline-block;padding:.35rem .8rem;background:#fef3cd;color:#856404;border-radius:6px;font-size:.82rem;font-weight:600;margin:.4rem 0}
+
+  /* ── Flights section ── */
+  .flight-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1rem}
+  .flight-card h3{font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;color:var(--green);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+  .flight-card h3 .arrow{font-size:1.2rem}
+  .flight-route{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
+  .flight-airport{text-align:center}
+  .flight-airport .code{font-size:1.5rem;font-weight:700}
+  .flight-airport .time{font-size:.95rem;color:var(--muted)}
+  .flight-airport .city{font-size:.78rem;color:var(--muted)}
+  .flight-line{flex:1;display:flex;align-items:center;gap:.5rem}
+  .flight-line hr{flex:1;border:none;border-top:2px dashed #ccc}
+  .flight-line .plane{font-size:1.2rem}
+  .flight-meta{font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
+  .flight-meta span{display:flex;align-items:center;gap:.3rem}
+
+  /* ── Costs summary ── */
+  .costs-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .costs-table th,.costs-table td{padding:.75rem 1rem;text-align:left;font-size:.92rem}
+  .costs-table thead{background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff}
+  .costs-table tbody tr{border-top:1px solid #eee}
+  .costs-table tbody tr:hover{background:rgba(0,146,70,.04)}
+  .costs-table .amount{text-align:right;font-weight:600}
+  .costs-table tfoot{background:#f0f0f0;font-weight:700}
+  .costs-table tfoot td{border-top:2px solid var(--green)}
+
+  /* ── Footer ── */
+  footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem}
+
+  /* ── Responsive ── */
+  @media(max-width:600px){
+    .hero h1{font-size:1.7rem}
+    .hero .dates-badge{font-size:.82rem;padding:.4rem 1rem}
+    .container{padding:1rem}
+    .day-header{flex-wrap:wrap;gap:.5rem}
+    .day-summary{display:none}
+    .flight-route{flex-direction:column;text-align:center}
+    .flight-line{justify-content:center}
+    .detail-grid{grid-template-columns:1fr}
+    .costs-table th,.costs-table td{padding:.5rem .6rem;font-size:.82rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="flag-bar"></div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="hero">
+  <h1>Italy Trip</h1>
+  <p class="subtitle">May 2026 &middot; 3 Adults</p>
+  <div class="dates-badge">May 9 &ndash; 17, 2026</div>
+</header>
+
+<div class="container">
+
+  <!-- ═══════════ FLIGHTS ═══════════ -->
+  <div class="section-title">Flights</div>
+
+  <div class="flight-card">
+    <h3><span class="arrow">&#9992;</span> Outbound &mdash; Sat, May 9</h3>
+    <div class="flight-route">
+      <div class="flight-airport">
+        <div class="code">ATL</div>
+        <div class="time">7:10 PM</div>
+        <div class="city">Atlanta</div>
+      </div>
+      <div class="flight-line">
+        <hr><span class="plane">&#9992;&#65039;</span><hr>
+      </div>
+      <div class="flight-airport">
+        <div class="code">FCO</div>
+        <div class="time">10:50 AM +1</div>
+        <div class="city">Rome</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <span><strong>Delta 66</strong></span>
+      <span>Seat 6B</span>
+      <span>Main Cabin (N)</span>
+    </div>
+  </div>
+
+  <div class="flight-card">
+    <h3><span class="arrow">&#9992;</span> Return &mdash; Sun, May 17</h3>
+    <div class="flight-route">
+      <div class="flight-airport">
+        <div class="code">FCO</div>
+        <div class="time">9:45 AM</div>
+        <div class="city">Rome</div>
+      </div>
+      <div class="flight-line">
+        <hr><span class="plane">&#9992;&#65039;</span><hr>
+      </div>
+      <div class="flight-airport">
+        <div class="code">ATL</div>
+        <div class="time">2:41 PM</div>
+        <div class="city">Atlanta</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <span><strong>Delta 215</strong></span>
+      <span>Seat 4H</span>
+      <span>Main Cabin (N)</span>
+      <span>Chadwick Lewis</span>
+      <span>SkyMiles #9477787726</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY-BY-DAY TIMELINE ═══════════ -->
+  <div class="section-title red">Day-by-Day Itinerary</div>
+
+  <div class="timeline">
+
+    <!-- DAY 1: May 9 — Depart -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-travel">Travel</span>
+        <span class="day-date">Fri, May 9</span>
+        <span class="day-summary">Depart Atlanta</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label">Flight:</span> Delta 66 &mdash; ATL 7:10 PM &rarr; FCO 10:50 AM (+1)</p>
+          <p>Overnight flight to Rome. Arrive Sunday morning.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2: May 10 — Arrive Rome → Florence -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:var(--green)"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-florence">Florence</span>
+        <span class="day-date">Sat, May 10</span>
+        <span class="day-summary">Arrive &amp; check-in Florence</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label">Arrive:</span> Rome FCO 10:50 AM &mdash; transfer to Florence</p>
+          <p><span class="label">Lodging:</span> Duccio Flat</p>
+          <dl class="detail-grid">
+            <dt>Address</dt><dd>122 Via Palazzuolo, Santa Maria Novella, 50123 Florence</dd>
+            <dt>Floor</dt><dd>3rd (no elevator)</dd>
+            <dt>Check-in</dt><dd>3:00 PM &ndash; 12:00 AM</dd>
+            <dt>Host</dt><dd>+39 366 155 5296</dd>
+            <dt>Entry</dt><dd>Door code (contact host)</dd>
+            <dt>Confirmation</dt><dd>5258741278</dd>
+            <dt>PIN</dt><dd>0156</dd>
+          </dl>
+          <p class="placeholder">[ Add later: Day 1 Florence activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3: May 11 — Florence -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:var(--green)"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-florence">Florence</span>
+        <span class="day-date">Sun, May 11</span>
+        <span class="day-summary">Full day in Florence</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label">Lodging:</span> Duccio Flat (Night 2 of 3)</p>
+          <p class="placeholder">[ Add later: Florence activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4: May 12 — Florence -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:var(--green)"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-florence">Florence</span>
+        <span class="day-date">Mon, May 12</span>
+        <span class="day-summary">Last full day Florence</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label">Lodging:</span> Duccio Flat (Night 3 of 3)</p>
+          <p class="placeholder">[ Add later: Florence activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5: May 13 — Florence → Bologna -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:#e8a317"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-bologna">Bologna</span>
+        <span class="day-date">Tue, May 13</span>
+        <span class="day-summary">Florence &rarr; Bologna</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label-red">Check-out:</span> Duccio Flat, Florence (7:00 &ndash; 10:00 AM)</p>
+          <p><span class="label">Check-in:</span> Residence Rizzoli &mdash; Suites and Apartments</p>
+          <dl class="detail-grid">
+            <dt>Address</dt><dd>Via Mirasole 4, 40124 Bologna</dd>
+          </dl>
+          <p class="placeholder">[ Add later: Bologna Day 1 activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 6: May 14 — Bologna -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:#e8a317"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-bologna">Bologna</span>
+        <span class="day-date">Wed, May 14</span>
+        <span class="day-summary">Full day in Bologna</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label">Lodging:</span> Residence Rizzoli (Night 2 of 3)</p>
+          <p class="placeholder">[ Add later: Bologna activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 7: May 15 — Bologna -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:#e8a317"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-bologna">Bologna</span>
+        <span class="day-date">Thu, May 15</span>
+        <span class="day-summary">Last full day Bologna</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label">Lodging:</span> Residence Rizzoli (Night 3 of 3)</p>
+          <p class="placeholder">[ Add later: Bologna activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 8: May 16 — Bologna → Rome -->
+    <div class="day-card red" style="position:relative">
+      <div class="day-card-dot"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-rome">Rome</span>
+        <span class="day-date">Fri, May 16</span>
+        <span class="day-summary">Bologna &rarr; Rome</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label-red">Check-out:</span> Residence Rizzoli, Bologna</p>
+          <p>Transfer to Rome for final night before departure.</p>
+          <p class="placeholder">[ Add later: Rome lodging ]</p>
+          <p class="placeholder">[ Add later: Rome activities ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 9: May 17 — Depart Rome -->
+    <div class="day-card" style="position:relative">
+      <div class="day-card-dot" style="border-color:var(--red)"></div>
+      <div class="day-header" onclick="toggle(this)">
+        <span class="day-city city-travel">Travel</span>
+        <span class="day-date">Sun, May 17</span>
+        <span class="day-summary">Depart Rome</span>
+        <span class="chevron"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg></span>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          <p><span class="label-red">Flight:</span> Delta 215 &mdash; FCO 9:45 AM &rarr; ATL 2:41 PM</p>
+          <p>Arrive Atlanta same day.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- ═══════════ BOOKED ACTIVITIES ═══════════ -->
+  <div class="section-title">Booked Activities</div>
+
+  <div class="flight-card">
+    <h3 style="color:var(--red)">&#127815; Grape Tour</h3>
+    <p style="font-size:.92rem">Wine tasting and vineyard experience</p>
+    <p style="font-size:.92rem;margin-top:.25rem"><strong>~$805 / &euro;691.88</strong></p>
+    <p class="placeholder" style="margin-top:.5rem">[ Add later: date, time, location ]</p>
+  </div>
+
+  <div class="flight-card">
+    <h3 style="color:var(--red)">&#127837; Food Tasting</h3>
+    <p style="font-size:.92rem">Local culinary experience</p>
+    <p style="font-size:.92rem;margin-top:.25rem"><strong>$135</strong></p>
+    <p class="placeholder" style="margin-top:.5rem">[ Add later: date, time, location ]</p>
+  </div>
+
+  <p class="placeholder" style="margin:1rem 0">[ Add later: additional activities ]</p>
+
+  <!-- ═══════════ COSTS SUMMARY ═══════════ -->
+  <div class="section-title red">Cost Summary</div>
+
+  <table class="costs-table">
+    <thead>
+      <tr><th>Item</th><th class="amount">Cost</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Florence Lodging &mdash; Duccio Flat (3 nights)</td><td class="amount">&euro;641.21</td></tr>
+      <tr><td>&nbsp;&nbsp;&#8627; Paid (card ****7870)</td><td class="amount">&euro;587.21</td></tr>
+      <tr><td>&nbsp;&nbsp;&#8627; City tax due at property (&euro;6/person/night &times; 3 nights &times; 3 adults)</td><td class="amount">&euro;54.00</td></tr>
+      <tr><td>Bologna Lodging &mdash; Residence Rizzoli (3 nights)</td><td class="amount"><span class="placeholder">[ Add later ]</span></td></tr>
+      <tr><td>Grape Tour</td><td class="amount">~$805 / &euro;691.88</td></tr>
+      <tr><td>Food Tasting</td><td class="amount">$135</td></tr>
+      <tr><td>Flights (Delta round-trip)</td><td class="amount"><span class="placeholder">[ Add later ]</span></td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td>Estimated Total</td><td class="amount"><span class="placeholder">[ Add later ]</span></td></tr>
+    </tfoot>
+  </table>
+
+  <p class="placeholder" style="margin:1.5rem 0">[ Add later: additional flights or transport ]</p>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="flag-bar" style="margin-bottom:1rem;border-radius:3px;overflow:hidden"></div>
+  Italy Trip 2026 &middot; Buon viaggio! &#127470;&#127481;
+</footer>
+
+<script>
+  function toggle(header) {
+    const card = header.closest('.day-card');
+    card.classList.toggle('open');
+  }
+
+  // Open the first day card by default
+  document.addEventListener('DOMContentLoaded', function() {
+    const first = document.querySelector('.day-card');
+    if (first) first.classList.add('open');
+  });
+</script>
+
+</body>
+</html>
