@@ -1,0 +1,18 @@
+name: Deploy to here.now
+
+on:
+  push:
+    branches: [claude/fiumicino-travel-guide-afGXT]
+    paths: [index.html, scripts/deploy-herenow.sh, .github/workflows/deploy-herenow.yml]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        env:
+          HERENOW_TOKEN: ${{ secrets.HERENOW_TOKEN }}
+          HERENOW_SLUG: sturdy-acorn-j7ch
+        run: bash scripts/deploy-herenow.sh
