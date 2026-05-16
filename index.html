@@ -3,739 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Italy Trip — May 2026</title>
+<title>Fiumicino — A Quick Guide</title>
 <style>
   :root {
-    --green: #009246;
-    --red: #CE2B37;
-    --white: #ffffff;
-    --bg: #f5f3f0;
+    --sea: #0a6e8a;
+    --sea-dark: #084a5c;
+    --sand: #f3ede3;
+    --bg: #f7f5f1;
     --card-bg: #ffffff;
     --text: #2c2c2c;
     --muted: #6b6b6b;
-    --border: #e0ddd8;
-    --shadow: 0 2px 8px rgba(0,0,0,0.07);
+    --border: #e3ded5;
+    --accent: #d98a3d;
+    --shadow: 0 2px 10px rgba(0,0,0,0.07);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  html { scroll-behavior: smooth; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-
-  .flag-stripe {
+  .wave {
     height: 6px;
-    background: linear-gradient(90deg, var(--green) 33.33%, var(--white) 33.33%, var(--white) 66.66%, var(--red) 66.66%);
+    background: linear-gradient(90deg, var(--sea) 0%, var(--accent) 50%, var(--sea) 100%);
   }
-
   header {
-    background: var(--card-bg);
-    padding: 2.5rem 1.5rem 2rem;
+    background: linear-gradient(160deg, var(--sea) 0%, var(--sea-dark) 100%);
+    color: #fff;
+    padding: 3rem 1.5rem 2.5rem;
     text-align: center;
-    border-bottom: 1px solid var(--border);
   }
-
-  header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 0.25rem;
+  header h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.5px; }
+  header .subtitle { font-size: 1.05rem; opacity: 0.9; margin-top: 0.4rem; }
+  header .base {
+    margin-top: 1rem; display: inline-block; font-size: 0.9rem;
+    background: rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 999px;
   }
-
-  header h1 span.flag { font-size: 1.6rem; margin-right: 0.4rem; }
-
-  header .subtitle {
-    color: var(--muted);
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  header .meta {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  }
-
-  header .meta span {
-    font-size: 0.85rem;
-    color: var(--muted);
-    background: var(--bg);
-    padding: 0.3rem 0.75rem;
-    border-radius: 20px;
-  }
-
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 1.5rem 1rem 3rem;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--muted);
-    margin: 2rem 0 0.75rem;
-    padding-left: 0.25rem;
-  }
-
-  /* --- Flight Card --- */
-  .flight-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 0.75rem;
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--card-bg); border-bottom: 1px solid var(--border);
+    display: flex; gap: 0.25rem; overflow-x: auto; padding: 0.6rem 1rem;
     box-shadow: var(--shadow);
   }
-
-  .flight-card .flight-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: var(--green);
-    margin-bottom: 0.5rem;
+  nav a {
+    color: var(--sea-dark); text-decoration: none; font-size: 0.88rem;
+    font-weight: 600; white-space: nowrap; padding: 0.35rem 0.8rem;
+    border-radius: 999px;
   }
-
-  .flight-card .flight-label.return { color: var(--red); }
-
-  .flight-route {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
+  nav a:hover { background: var(--sand); }
+  main { max-width: 820px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+  section { margin-top: 2.5rem; }
+  .intro {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow);
+    margin-top: 2rem; font-size: 1.02rem; color: #444;
   }
-
-  .flight-route .airport {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+  h2 {
+    font-size: 1.5rem; margin-bottom: 1rem; color: var(--sea-dark);
+    border-left: 4px solid var(--accent); padding-left: 0.7rem;
   }
-
-  .flight-route .arrow {
-    color: var(--muted);
-    font-size: 1.2rem;
+  h3 {
+    font-size: 1.05rem; margin: 1.4rem 0 0.6rem; color: var(--sea-dark);
+    text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem;
   }
-
-  .flight-route .time {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .flight-details {
-    font-size: 0.82rem;
-    color: var(--muted);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
-  }
-
-  .flight-details span::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 50%;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-  }
-
-  .flight-details span:first-child::before { display: none; }
-
-  .passenger-info {
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
-    color: var(--muted);
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border);
-  }
-
-  /* --- Day Card --- */
-  .day-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 0.75rem;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-
-  .day-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.25rem;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.15s;
-  }
-
-  .day-card-header:hover {
-    background: #fafaf8;
-  }
-
-  .day-card-header .left {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .day-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--white);
-    flex-shrink: 0;
-  }
-
-  .day-badge.florence { background: var(--green); }
-  .day-badge.bologna { background: var(--red); }
-  .day-badge.travel { background: var(--muted); }
-  .day-badge.rome { background: #f0ad4e; }
-
-  .day-info .day-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    line-height: 1.3;
-  }
-
-  .day-info .day-subtitle {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  .chevron {
-    font-size: 1.1rem;
-    color: var(--muted);
-    transition: transform 0.25s;
-    flex-shrink: 0;
-  }
-
-  .day-card.open .chevron { transform: rotate(180deg); }
-
-  .day-card-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease;
-  }
-
-  .day-card.open .day-card-body {
-    max-height: 800px;
-  }
-
-  .day-card-content {
-    padding: 0 1.25rem 1.25rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .detail-group {
-    margin-top: 1rem;
-  }
-
-  .detail-group h4 {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-  }
-
-  .detail-group p, .detail-group li {
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
-
-  .detail-group ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .detail-group ul li::before {
-    content: '~';
-    margin-right: 0.5rem;
-    color: var(--muted);
-  }
-
-  .placeholder {
-    display: inline-block;
-    background: #fef3cd;
-    color: #856404;
-    font-size: 0.78rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    margin-top: 0.3rem;
-    font-weight: 500;
-  }
-
-  .tag {
-    display: inline-block;
-    font-size: 0.72rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 6px;
-    font-weight: 600;
-    margin-right: 0.3rem;
-  }
-
-  .tag.green { background: #e6f4ea; color: var(--green); }
-  .tag.red { background: #fce8ea; color: var(--red); }
-  .tag.gray { background: #eee; color: var(--muted); }
-
-  /* --- Costs --- */
-  .costs-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
+  .card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 0.8rem;
     box-shadow: var(--shadow);
   }
-
-  .costs-card h3 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+  .card strong { color: var(--sea-dark); }
+  .card .note { color: var(--muted); font-size: 0.92rem; }
+  ul.plain { list-style: none; }
+  ul.plain li { padding: 0.35rem 0; border-bottom: 1px dashed var(--border); }
+  ul.plain li:last-child { border-bottom: none; }
+  .steps { counter-reset: step; list-style: none; }
+  .steps li {
+    position: relative; padding: 0.4rem 0 0.4rem 2.2rem; counter-increment: step;
   }
-
-  .cost-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.9rem;
+  .steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 0.35rem;
+    background: var(--sea); color: #fff; width: 1.5rem; height: 1.5rem;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
   }
-
-  .cost-row:last-child { border-bottom: none; }
-
-  .cost-row.total {
-    font-weight: 700;
-    font-size: 1rem;
-    border-top: 2px solid var(--text);
-    border-bottom: none;
-    margin-top: 0.5rem;
-    padding-top: 0.75rem;
+  .resto {
+    display: flex; gap: 0.9rem; background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.2rem; margin-bottom: 0.8rem; box-shadow: var(--shadow);
   }
-
-  .cost-row .label { color: var(--muted); }
-  .cost-row.total .label { color: var(--text); }
-
+  .rank {
+    flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%;
+    background: var(--sea); color: #fff; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .resto:nth-child(1) .rank { background: var(--accent); }
+  .resto-body { flex: 1; }
+  .resto-body .top { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline; }
+  .resto-body .name { font-weight: 700; color: var(--sea-dark); }
+  .resto-body .star { color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+  .resto-body .tag {
+    font-size: 0.75rem; background: var(--sand); color: var(--muted);
+    padding: 0.1rem 0.55rem; border-radius: 999px;
+  }
+  .resto-body .desc { font-size: 0.94rem; color: #444; margin-top: 0.3rem; }
+  .resto-body .meta { font-size: 0.85rem; color: var(--muted); margin-top: 0.35rem; }
+  .resto-body .meta a { color: var(--sea); text-decoration: none; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } header h1 { font-size: 1.9rem; } }
   footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  /* --- Responsive --- */
-  @media (max-width: 500px) {
-    header h1 { font-size: 1.5rem; }
-    header .meta { gap: 0.5rem; }
-    .flight-route .airport { font-size: 1.2rem; }
-    .container { padding: 1rem 0.75rem 2rem; }
+    text-align: center; padding: 2rem 1rem; color: var(--muted);
+    font-size: 0.85rem; border-top: 1px solid var(--border);
   }
 </style>
 </head>
 <body>
-
-<div class="flag-stripe"></div>
-
+<div class="wave"></div>
 <header>
-  <h1><span class="flag">&#x1F1EE;&#x1F1F9;</span> Italy Trip &mdash; May 2026</h1>
-  <p class="subtitle">Atlanta &rarr; Rome &rarr; Florence &rarr; Bologna &rarr; Rome &rarr; Atlanta</p>
-  <div class="meta">
-    <span>3 Adults</span>
-    <span>May 9 &ndash; 17, 2026</span>
-    <span>8 Nights</span>
-  </div>
+  <h1>Fiumicino</h1>
+  <div class="subtitle">A quick guide to sights, walks &amp; where to eat</div>
+  <div class="base">Base: Via Giacomo Cavalli 6–16, 00054 Fiumicino RM</div>
 </header>
 
-<div class="container">
+<nav>
+  <a href="#intro">Overview</a>
+  <a href="#town">In Town</a>
+  <a href="#trips">Short Trips</a>
+  <a href="#walks">Walks</a>
+  <a href="#eat">Top 10 Eats</a>
+  <a href="#dishes">Local Dishes</a>
+  <a href="#tips">Tips</a>
+</nav>
 
-  <!-- FLIGHTS -->
-  <div class="section-label">Flights</div>
+<main>
+  <p class="intro" id="intro">
+    Fiumicino sits at the mouth of the Tiber, just south of Rome's airport. It was the
+    maritime gateway to ancient Rome — Emperor Trajan built the original port here in the
+    2nd century — and today it's a working fishing town with a canal-front restaurant strip
+    that's a favorite weekend escape for Romans. Everything in town is walkable from your
+    address; major Roman sites are a short taxi or train ride away.
+  </p>
 
-  <div class="flight-card">
-    <div class="flight-label">Outbound &mdash; Sat May 9</div>
-    <div class="flight-route">
-      <div>
-        <span class="airport">ATL</span>
-        <span class="time">7:10 PM</span>
-      </div>
-      <span class="arrow">&xrarr;</span>
-      <div>
-        <span class="airport">FCO</span>
-        <span class="time">10:50 AM +1</span>
-      </div>
-    </div>
-    <div class="flight-details">
-      <span>Delta 66</span>
-      <span>Main Cabin (N)</span>
-      <span>Seat 6B</span>
-    </div>
-  </div>
+  <section id="town">
+    <h2>In Town — all walkable</h2>
+    <div class="card"><strong>Via della Torre Clementina (the Lungomare).</strong> The famous canal-front promenade lined with fishing boats, seafood restaurants, and gelaterias. Walk it end to end — about 1 km. Sunset from the end of the pier is the postcard shot. <span class="note">A few minutes from your address.</span></div>
+    <div class="card"><strong>Ponte 2 Giugno (swing bridge).</strong> Built in 1948, this rotating bridge connects the town center to Isola Sacra and still opens for boats. Great views of the canal and port.</div>
+    <div class="card"><strong>Borgo Valadier.</strong> The 19th-century planned village core, designed by Giuseppe Valadier (who reshaped Piazza del Popolo in Rome). Pastel buildings, narrow streets, and the parish church of Santa Maria Assunta.</div>
+    <div class="card"><strong>Mercato del Pesce.</strong> The fish market by the port — go in the morning to see the daily catch unloaded. A glimpse of working Fiumicino even if you're not buying.</div>
+    <div class="card"><strong>Villa Guglielmi.</strong> A 19th-century villa in a 10-hectare park. Good for a quiet walk, picnic, or breather between meals. <span class="note">Free.</span></div>
+    <div class="card"><strong>Faro di Fiumicino (lighthouse).</strong> At the very tip of the pier where the canal meets the sea. Walk out at golden hour.</div>
+  </section>
 
-  <div class="flight-card">
-    <div class="flight-label return">Return &mdash; Sun May 17</div>
-    <div class="flight-route">
-      <div>
-        <span class="airport">FCO</span>
-        <span class="time">9:45 AM</span>
-      </div>
-      <span class="arrow">&xrarr;</span>
-      <div>
-        <span class="airport">ATL</span>
-        <span class="time">2:41 PM</span>
-      </div>
-    </div>
-    <div class="flight-details">
-      <span>Delta 215</span>
-      <span>Main Cabin (N)</span>
-      <span>Seat 4H</span>
-    </div>
-  </div>
+  <section id="trips">
+    <h2>Short Trips — 5–20 min by taxi or bus</h2>
+    <div class="card"><strong>Porto di Traiano (Trajan's Port).</strong> Hexagonal Roman imperial harbor from 100–112 AD, set in a peaceful nature oasis. One of the lesser-known archaeological gems. <span class="note">~€10 entry · about 5 min by car.</span></div>
+    <div class="card"><strong>Necropoli di Porto (Isola Sacra).</strong> A remarkably preserved Roman cemetery between Fiumicino and Ostia. Quiet, atmospheric, often nearly empty.</div>
+    <div class="card"><strong>Museo delle Navi Romane.</strong> The Roman Ships Museum near the airport — displays actual Roman-era ships excavated from Trajan's port. Small but fascinating.</div>
+    <div class="card"><strong>Ostia Antica.</strong> The big one — 15 min away. The ancient port city of Rome, often compared to Pompeii but far less crowded. Allow half a day: theater, baths, frescoes, mosaics still in place.</div>
+    <div class="card"><strong>Focene &amp; Fregene beaches.</strong> Wide sandy beaches with <em>stabilimenti</em> (beach clubs) for lunch and a swim. Fregene is the chicer option with classic seafood beach restaurants.</div>
+  </section>
 
-  <div class="passenger-info" style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:0.85rem 1.25rem;box-shadow:var(--shadow);margin-bottom:0.75rem;">
-    Passenger: <strong>Chadwick Lewis</strong> &nbsp;|&nbsp; SkyMiles #9477787726
-  </div>
+  <section id="walks">
+    <h2>Walking Streets &amp; Strolls</h2>
+    <p style="color:#444;margin-bottom:1rem;">Fiumicino is compact and flat — perfect on foot.</p>
+    <div class="card">
+      <h3 style="margin-top:0;">The classic loop · ≈45–60 min</h3>
+      <ol class="steps">
+        <li>Start at your address on Via Giacomo Cavalli.</li>
+        <li>Walk west on Via Portuense toward the canal.</li>
+        <li>Pick up the canal at Via della Torre Clementina and follow it toward the sea — restaurants and boats on your right, fishing port on your left.</li>
+        <li>Continue to the end of the pier for the lighthouse and sea views.</li>
+        <li>Cross Ponte 2 Giugno to the Isola Sacra side, walk back along Via del Faro.</li>
+        <li>Loop back through the Borgo Valadier streets.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Other strolls</h3>
+      <ul class="plain">
+        <li><strong>Via Portuense.</strong> Local shopping street — small boutiques, bars, gelato.</li>
+        <li><strong>Lungomare della Salute</strong> (Isola Sacra). Beach promenade with a residential, less touristy feel.</li>
+        <li><strong>Fiumicino cycle path.</strong> Runs along the coast — rent a bike for a longer ride; technically connects to Rome (~50 km) but a short stretch is plenty.</li>
+      </ul>
+    </div>
+  </section>
 
-  <span class="placeholder">[ Add later ] Additional flights</span>
+  <section id="eat">
+    <h2>Top 10 Restaurants</h2>
+    <p style="color:#444;margin-bottom:1rem;">Ranked by rating, popularity, and signature dishes. Reservations are strongly recommended at the canal-front spots, especially Fri/Sat dinner and Sunday lunch.</p>
 
-  <!-- TIMELINE -->
-  <div class="section-label">Day-by-Day Itinerary</div>
+    <div class="resto"><div class="rank">1</div><div class="resto-body">
+      <div class="top"><span class="name">Pisicchio da Raffaella e Milo</span><span class="star">4.9★</span><span class="tag">Seafood</span></div>
+      <div class="desc">Tiny family-run gem on Isola Sacra. Tuna paccheri, mixed fried seafood, ravioli.</div>
+      <div class="meta">Closed Wed · <a href="tel:+390686795402">+39 06 8679 5402</a> · Reservation essential</div>
+    </div></div>
 
-  <!-- Day 1: May 9 — Departure -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge travel">D1</div>
-        <div class="day-info">
-          <div class="day-title">Departure Day</div>
-          <div class="day-subtitle">Fri, May 9 &mdash; Atlanta &rarr; Rome</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Flight</h4>
-          <p>Delta 66 &mdash; ATL 7:10 PM &rarr; FCO 10:50 AM (arrives May 10)</p>
-        </div>
-        <div class="detail-group">
-          <h4>Notes</h4>
-          <p>Overnight flight. Arrive in Rome the next morning.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">2</div><div class="resto-body">
+      <div class="top"><span class="name">Seconda Riva</span><span class="star">4.8★</span><span class="tag">Seafood</span></div>
+      <div class="desc">Right on the canal. Lobster linguine, sea bass gnocchi, excellent €25 lunch menu.</div>
+      <div class="meta">Daily 11am–11pm · <a href="tel:+390657 81491">+39 06 578 1491</a> · 1,441 reviews · Reservation strongly recommended</div>
+    </div></div>
 
-  <!-- Day 2: May 10 — Arrive Rome, Train to Florence -->
-  <div class="day-card open">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge florence">D2</div>
-        <div class="day-info">
-          <div class="day-title">Arrive &amp; Florence</div>
-          <div class="day-subtitle">Sat, May 10 &mdash; Rome FCO &rarr; Florence</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Arrival</h4>
-          <p>Land at FCO 10:50 AM. Transfer to Florence (train or car).</p>
-        </div>
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <p><strong>Duccio Flat</strong><br>
-          122 Via Palazzuolo, Santa Maria Novella, 50123 Florence<br>
-          3rd floor, no elevator</p>
-          <p>Check-in: 3:00 PM &ndash; 12:00 AM<br>
-          Host: <a href="tel:+393661555296">+39 366 155 5296</a><br>
-          Entry: Door code (contact host)</p>
-          <p style="margin-top:0.4rem">
-            <span class="tag green">Confirmation #5258741278</span>
-            <span class="tag gray">PIN 0156</span>
-          </p>
-        </div>
-        <div class="detail-group">
-          <h4>Activities</h4>
-          <span class="placeholder">[ Add later ] Florence activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">3</div><div class="resto-body">
+      <div class="top"><span class="name">FOLLIS – Ristorante &amp; American Bar</span><span class="star">4.8★</span><span class="tag">Seafood + cocktails</span></div>
+      <div class="desc">Elegant, ~1,000-label wine list, 6-course chef's tasting for €70.</div>
+      <div class="meta">Daily lunch &amp; dinner till 1am · <a href="tel:+390639915713">+39 06 3991 5713</a> · Reservation essential</div>
+    </div></div>
 
-  <!-- Day 3: May 11 — Florence -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge florence">D3</div>
-        <div class="day-info">
-          <div class="day-title">Florence</div>
-          <div class="day-subtitle">Sun, May 11</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <p>Duccio Flat &mdash; Night 2 of 3</p>
-        </div>
-        <div class="detail-group">
-          <h4>Activities</h4>
-          <span class="placeholder">[ Add later ] Florence activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">4</div><div class="resto-body">
+      <div class="top"><span class="name">Borgo Salino Ristorante</span><span class="star">4.8★</span><span class="tag">Refined seafood</span></div>
+      <div class="desc">Outstanding crudo and chef's tasting — reviewers predict a future Michelin star.</div>
+      <div class="meta">Closed Mon · <a href="tel:+393473131320">+39 347 313 1320</a> · Reservation essential</div>
+    </div></div>
 
-  <!-- Day 4: May 12 — Florence -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge florence">D4</div>
-        <div class="day-info">
-          <div class="day-title">Florence</div>
-          <div class="day-subtitle">Mon, May 12</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <p>Duccio Flat &mdash; Night 3 of 3</p>
-        </div>
-        <div class="detail-group">
-          <h4>Activities</h4>
-          <span class="placeholder">[ Add later ] Florence activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">5</div><div class="resto-body">
+      <div class="top"><span class="name">Vizio Bistrot Ristorante</span><span class="star">4.8★</span><span class="tag">Bistro &amp; cocktails</span></div>
+      <div class="desc">Bison tartare, mushroom &amp; truffle pasta, lively until 1am.</div>
+      <div class="meta"><a href="tel:+393926400335">+39 392 640 0335</a> · Reservation recommended</div>
+    </div></div>
 
-  <!-- Day 5: May 13 — Florence → Bologna -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge bologna">D5</div>
-        <div class="day-info">
-          <div class="day-title">Florence &rarr; Bologna</div>
-          <div class="day-subtitle">Tue, May 13</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Morning</h4>
-          <p>Check out of Duccio Flat (7&ndash;10 AM). Travel to Bologna.</p>
-          <p style="font-size:0.82rem;color:var(--muted)">City tax due at checkout: <strong>&euro;54</strong> (&euro;6/person/night &times; 3 nights &times; 3 adults)</p>
-        </div>
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <p><strong>Residence Rizzoli &mdash; Suites and Apartments</strong><br>
-          Via Mirasole 4, 40124 Bologna</p>
-        </div>
-        <div class="detail-group">
-          <h4>Activities</h4>
-          <span class="placeholder">[ Add later ] Bologna activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">6</div><div class="resto-body">
+      <div class="top"><span class="name">Tenuta del Duca</span><span class="star">4.8★</span><span class="tag">Italian + rooms</span></div>
+      <div class="desc">Elegant fireplace dining; handy if you have an early FCO flight.</div>
+      <div class="meta">Closed Mon · <a href="tel:+393662386289">+39 366 238 6289</a> · Reservation recommended</div>
+    </div></div>
 
-  <!-- Day 6: May 14 — Bologna -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge bologna">D6</div>
-        <div class="day-info">
-          <div class="day-title">Bologna</div>
-          <div class="day-subtitle">Wed, May 14</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <p>Residence Rizzoli &mdash; Night 2 of 3</p>
-        </div>
-        <div class="detail-group">
-          <h4>Booked</h4>
-          <ul>
-            <li>Grape Tour &mdash; ~$805 / &euro;691.88</li>
-            <li>Food Tasting &mdash; $135</li>
-          </ul>
-        </div>
-        <div class="detail-group">
-          <h4>Additional Activities</h4>
-          <span class="placeholder">[ Add later ] Bologna activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">7</div><div class="resto-body">
+      <div class="top"><span class="name">Trattoria Al Monte</span><span class="star">4.7★</span><span class="tag">Roman trattoria</span></div>
+      <div class="desc">Best value on the list. Spaghetti all'arrabbiata, grilled salsicce, tiramisu.</div>
+      <div class="meta">Closed Tue · <a href="tel:+390677204189">+39 06 7720 4189</a> · Reservation recommended</div>
+    </div></div>
 
-  <!-- Day 7: May 15 — Bologna -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge bologna">D7</div>
-        <div class="day-info">
-          <div class="day-title">Bologna</div>
-          <div class="day-subtitle">Thu, May 15</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <p>Residence Rizzoli &mdash; Night 3 of 3</p>
-        </div>
-        <div class="detail-group">
-          <h4>Activities</h4>
-          <span class="placeholder">[ Add later ] Bologna activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">8</div><div class="resto-body">
+      <div class="top"><span class="name">L'Osteria DER Pajata</span><span class="star">4.7★</span><span class="tag">Roman / grilled meat</span></div>
+      <div class="desc">Lively spot — sausages, picanha, full courses with wine. Dinner only.</div>
+      <div class="meta"><a href="tel:+390694840904">+39 06 9484 0904</a> · Reservation recommended</div>
+    </div></div>
 
-  <!-- Day 8: May 16 — Bologna → Rome -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge rome">D8</div>
-        <div class="day-info">
-          <div class="day-title">Bologna &rarr; Rome</div>
-          <div class="day-subtitle">Fri, May 16</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Morning</h4>
-          <p>Check out of Residence Rizzoli. Travel to Rome.</p>
-        </div>
-        <div class="detail-group">
-          <h4>Lodging</h4>
-          <span class="placeholder">[ Add later ] Rome lodging</span>
-        </div>
-        <div class="detail-group">
-          <h4>Activities</h4>
-          <span class="placeholder">[ Add later ] Rome activities</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">9</div><div class="resto-body">
+      <div class="top"><span class="name">Osteria Iberica</span><span class="star">4.7★</span><span class="tag">Spanish &amp; seafood</span></div>
+      <div class="desc">Husband-and-wife team (Spanish chef + Italian chef). Authentic paella and mariscos.</div>
+      <div class="meta">Closed Tue · <a href="tel:+390620975925">+39 06 2097 5925</a> · Reservation recommended</div>
+    </div></div>
 
-  <!-- Day 9: May 17 — Return -->
-  <div class="day-card">
-    <div class="day-card-header" onclick="toggleCard(this)">
-      <div class="left">
-        <div class="day-badge travel">D9</div>
-        <div class="day-info">
-          <div class="day-title">Return Home</div>
-          <div class="day-subtitle">Sun, May 17 &mdash; Rome &rarr; Atlanta</div>
-        </div>
-      </div>
-      <span class="chevron">&#x25BE;</span>
-    </div>
-    <div class="day-card-body">
-      <div class="day-card-content">
-        <div class="detail-group">
-          <h4>Flight</h4>
-          <p>Delta 215 &mdash; FCO 9:45 AM &rarr; ATL 2:41 PM</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="resto"><div class="rank">10</div><div class="resto-body">
+      <div class="top"><span class="name">Centodieci 110</span><span class="star">4.7★</span><span class="tag">Pizza + seafood</span></div>
+      <div class="desc">Modern, intimate, under new management. Great fried fish and crisp pizza.</div>
+      <div class="meta">Closed Mon · <a href="tel:+390689812715">+39 06 8981 2715</a> · Reservation recommended</div>
+    </div></div>
+  </section>
 
-  <!-- COSTS -->
-  <div class="section-label">Cost Summary</div>
+  <section id="dishes">
+    <h2>Local Dishes Worth Ordering</h2>
+    <div class="grid2">
+      <div class="card"><strong>Frittura di paranza.</strong> Mixed lightly fried small fish — the signature dish of the port.</div>
+      <div class="card"><strong>Spaghetti alle vongole.</strong> Spaghetti with clams, garlic, olive oil — a classic done especially well here.</div>
+      <div class="card"><strong>Spaghetti allo scoglio.</strong> Pasta with mixed seafood (mussels, clams, prawns, calamari).</div>
+      <div class="card"><strong>Crudo di mare.</strong> Raw seafood platter — Fiumicino is one of the best places in Lazio for this.</div>
+      <div class="card"><strong>Baccalà fritto.</strong> Crispy fried salt cod — common street food.</div>
+      <div class="card"><strong>Wine.</strong> Ask for a Frascati or Castelli Romani white — local, crisp, pairs perfectly with seafood.</div>
+    </div>
+  </section>
 
-  <div class="costs-card">
-    <h3>Trip Expenses</h3>
-    <div class="cost-row">
-      <span class="label">Florence &mdash; Duccio Flat (3 nights)</span>
-      <span>&euro;641.21</span>
-    </div>
-    <div class="cost-row">
-      <span class="label" style="padding-left:1rem;font-size:0.8rem;">Paid (card ****7870)</span>
-      <span style="font-size:0.8rem;">&euro;587.21</span>
-    </div>
-    <div class="cost-row">
-      <span class="label" style="padding-left:1rem;font-size:0.8rem;">City tax (due at property)</span>
-      <span style="font-size:0.8rem;">&euro;54.00</span>
-    </div>
-    <div class="cost-row">
-      <span class="label">Bologna &mdash; Residence Rizzoli (3 nights)</span>
-      <span class="placeholder" style="font-size:0.75rem;">[ Add later ]</span>
-    </div>
-    <div class="cost-row">
-      <span class="label">Rome &mdash; Lodging (1 night)</span>
-      <span class="placeholder" style="font-size:0.75rem;">[ Add later ]</span>
-    </div>
-    <div class="cost-row">
-      <span class="label">Grape Tour</span>
-      <span>~$805 / &euro;691.88</span>
-    </div>
-    <div class="cost-row">
-      <span class="label">Food Tasting</span>
-      <span>$135.00</span>
-    </div>
-    <div class="cost-row">
-      <span class="label">Flights</span>
-      <span class="placeholder" style="font-size:0.75rem;">[ Add later ]</span>
-    </div>
-    <div class="cost-row total">
-      <span class="label">Estimated Total</span>
-      <span class="placeholder" style="font-size:0.85rem;">TBD</span>
-    </div>
-  </div>
+  <section id="tips">
+    <h2>Practical Tips</h2>
+    <ul class="plain card">
+      <li><strong>Tap water.</strong> Safe to drink throughout Italy.</li>
+      <li><strong>Tipping.</strong> Not mandatory; round up or leave a couple of euros for good service. Check for a <em>coperto</em> (cover charge) already on the bill.</li>
+      <li><strong>Reservations.</strong> Italians eat late — dinner starts 8pm at the earliest. Book ahead for the canal-front spots.</li>
+      <li><strong>To/from FCO airport.</strong> Roughly 10 min by taxi — €15–25. Trains from Fiumicino Aeroporto to Roma Termini in ~32 min.</li>
+      <li><strong>Cash vs. card.</strong> Cards accepted nearly everywhere, but carry a little cash for small bars and the fish market.</li>
+      <li><strong>Best time to walk the canal.</strong> Late afternoon into sunset — boats return with the catch and the light is excellent.</li>
+    </ul>
+  </section>
+</main>
 
-</div>
-
-<footer>
-  <div class="flag-stripe" style="margin-bottom:1rem;border-radius:3px;"></div>
-  Italy Trip 2026 &mdash; Last updated <span id="updated"></span>
-</footer>
-
-<script>
-  function toggleCard(header) {
-    header.closest('.day-card').classList.toggle('open');
-  }
-
-  document.getElementById('updated').textContent = new Date().toLocaleDateString('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric'
-  });
-</script>
-
+<footer>Fiumicino travel guide · Buon viaggio &amp; buon appetito</footer>
+<div class="wave"></div>
 </body>
 </html>
